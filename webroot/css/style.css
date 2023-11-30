@@ -1,0 +1,83 @@
+/* Estilo general del cuerpo */
+body {
+    background-color: #333; /* Color de fondo oscuro */
+    color: #fff; /* Color del texto en blanco */
+    font-family: Arial, sans-serif; /* Fuente de texto */
+    margin: 0; /* Elimina el margen predeterminado */
+    padding: 0; /* Elimina el relleno predeterminado */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Asegura que el contenido ocupe al menos el 100% de la altura de la ventana */
+}
+
+/* Estilo del elemento a */
+a {
+    color: #888;
+}
+
+/* Estilo de la lista no ordenada (ul) */
+ul {
+    list-style-type: none; /* Elimina los marcadores de lista */
+    padding: 0; /* Elimina el relleno predeterminado */
+    text-align: center; /* Centra la lista */
+}
+
+/* Estilo de los elementos de lista (li) */
+li {
+    margin-bottom: 15px; /* Espacio entre elementos de la lista */
+    font-size: 20px; /* Tamaño de fuente más grande */
+}
+
+/* Estilo de los enlaces en la lista */
+li a {
+    color: #888; /* Color de enlaces azul claro */
+    text-decoration: none; /* Elimina el subrayado predeterminado */
+}
+
+li a:hover {
+    text-decoration: underline; /* Agrega un subrayado al pasar el ratón por encima */
+}
+/* Estilo de la cabeza de página */
+header {
+    background-color: #222;
+    color: #888; /* Color de texto gris para el encabezado */
+    text-align: center; /* Centra el encabezado */
+}
+
+/* Estilo del pie de página */
+footer {
+    background-color: #222; /* Fondo más oscuro para el pie de página */
+    color: #999; /* Texto de color gris claro */
+    text-align: center; /* Centra el texto en el pie de página */
+    padding: 10px 0; /* Agrega relleno en la parte superior e inferior del pie de página */
+    position:fixed;
+    left:0px;
+    bottom: 0; /* Fija el pie de página en la parte inferior de la página */
+    width: 100%; /* Asegura que el ancho del pie de página sea igual al ancho de la página */
+}
+
+table {
+    border-collapse: collapse;
+    width: 600px; /* El ancho de la tabla puede ser ajustado según tus necesidades */
+    background-color: #fff;
+    border: 1px solid #333;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 4px;/* Centra la tabla horizontalmente dentro del contenedor */
+}
+
+/* Estilos adicionales para la tabla y las celdas */
+table th, table td {
+    padding: 10px;
+    border: 1px solid #333;
+    background-color: #888;
+}
+
+/* */
+td a{
+    color: #ffff;
+}
+
+span{
+    color: #FF0000;
+}
