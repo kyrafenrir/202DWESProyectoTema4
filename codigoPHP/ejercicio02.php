@@ -50,12 +50,7 @@
             
                 // Utilizacion de la libreria de validacion donde se incluyen los metodos de validacion de las entradas del formulario
                 require_once '../core/231018libreriaValidacion.php';
-                
-                // Inicizalicación de variables de uso
-                $host = '192.168.20.19'; // Nombre del servidor de la base de datos erroneo
-                $namedb = 'DB202DWESProyectoTema4'; // Nombre de la base de datos
-                $usuario = 'user202DWESProyectoTema4'; // Nombre de usuario de la base de datos
-                $password = 'paso'; // Contraseña de la base de datos
+                require_once '../config/confDB.php';
                 
                 $_REQUEST['FechaCreacionDepartamento'] = date('Y-m-d / H:i:s'); // Inicializamos la variable global para la fehca dandole el formato para insertar
 
@@ -80,7 +75,7 @@
 
                     try {
                         // Establecemos la conexión con la base de datos
-                        $miDB = new PDO('mysql:host=' . $host . '; dbname=' . $namedb, $usuario, $password);
+                        $miDB = new PDO(dsn,usuario,password);
                         // Inicializacion de variables
                         $entradaOK = true; // Inizacion de la variable que indica que todo en el formulario esta correctamente
                         // Momento de insercción en tabla
@@ -139,7 +134,7 @@
 
                     try {
                         // Establecemos la conexión con la base de datos
-                        $miDB = new PDO('mysql:host=' . $host . '; dbname=' . $namedb, $usuario, $password);
+                        $miDB = new PDO(dsn,usuario,password);
                         
                         // Momento de insercción en tabla
                         $consulta = 'insert into Departamento values ("' . $aRespuestas['CodDepartamento'] . '","' . $aRespuestas['DescDepartamento'] . '","' . $aRespuestas['FechaCreacionDepartamento']. '",' . $aRespuestas['VolumenNegocio'] . ',' . $aRespuestas['FechaBaja'] . ');';

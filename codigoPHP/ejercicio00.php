@@ -17,12 +17,8 @@
                 * Author:  Erika Martínez Pérez
                 * Created: 06/11/2023
                 */
-            
-                // Inicialización de variables de uso
-                $host = '192.168.20.19'; // Nombre del servidor de la base de datos erroneo
-                $namedb = 'DB202DWESProyectoTema4'; // Nombre de la base de datos
-                $usuario = 'user202DWESProyectoTema4'; // Nombre de usuario de la base de datos
-                $password = 'paso'; // Contraseña de la base de datos
+                
+                require_once '../config/confDB.php';
                 
                 $attributesPDO = array(
                     'AUTOCOMMIT', 'ERRMODE', 
@@ -34,7 +30,7 @@
                 
                 try {
                     // Establecemos la conexión con la base de datos
-                    $miDB = new PDO('mysql:host='.$host.'; dbname='.$namedb,$usuario,$password);
+                    $miDB = new PDO(dsn,usuario,password);
                     echo ("CONEXIÓN EXITOSA <br>");
                     
                     echo ("<h2>DATOS DE LA CONEXION: </h2>");
@@ -54,12 +50,8 @@
                 /*  Realizacion de la misma conexion anteriormente realizada con un fallo en la IP
                  *  para comprobar que el try funciona correctamente.
                  */
-                $host = '192.168.20.19'; // Nombre del servidor de la base de datos 
-                $namedb = 'DB202DWESProyectoTema4'; // Nombre de la base de datos
-                $usuario = 'user202DWESProyectoTema4'; // Nombre de usuario de la base de datos
-                $password = 'paso1'; // Contraseña de la base de datos erroneo
                 try {
-                    $db = new PDO('mysql:host='.$host.'; dbname='.$namedb,$usuario,$password); // Establecemos la conexión con la base de datos
+                    $miDB = new PDO(dsn,usuario,'paso1'); // Establecemos la conexión con la base de datos
                     echo ("CONEXIÓN EXITOSA"); 
                 } catch (PDOException $pdoEx) { // Mostrado dell mensaje seguido del error correspondiente debido a la excepción
                     echo ("ERROR DE CONEXIÓN <br><br>".$pdoEx->getMessage());

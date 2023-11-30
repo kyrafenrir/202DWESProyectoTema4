@@ -16,16 +16,12 @@
                 * Author:  Erika Martínez Pérez
                 * Created: 06/11/2023
                 */
-            
-                // Inicizalicación de variables de uso
-                $host = '192.168.20.19'; // Nombre del servidor de la base de datos erroneo
-                $namedb = 'DB202DWESProyectoTema4'; // Nombre de la base de datos
-                $usuario = 'user202DWESProyectoTema4'; // Nombre de usuario de la base de datos
-                $password = 'paso'; // Contraseña de la base de datos
+                
+                require_once '../config/confDB.php';
                 
                 try {
                     // Establecemos la conexión con la base de datos
-                    $miDB = new PDO('mysql:host='.$host.'; dbname='.$namedb,$usuario,$password);
+                    $miDB = new PDO(dsn,usuario,password);
                     
                     // Se preparan las consultas
                     $consulta = $miDB->prepare('select * from Departamento');
@@ -56,7 +52,7 @@
                 
                 try {
                     // Establecemos la conexión con la base de datos
-                    $miDB = new PDO('mysql:host='.$host.'; dbname='.$namedb,$usuario,$password);
+                    $miDB = new PDO(dsn,usuario,password);
                     
                     // Se preparan las consultas
                     $consulta = $miDB->query('select * from Departamento');

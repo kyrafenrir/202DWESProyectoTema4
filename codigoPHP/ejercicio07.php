@@ -19,12 +19,8 @@
                  * @since 18/11/2023
                  */
                 
-                // Inicizalicación de variables de uso
-                $host = '192.168.20.19'; // Nombre del servidor de la base de datos erroneo
-                $namedb = 'DB202DWESProyectoTema4'; // Nombre de la base de datos
-                $usuario = 'user202DWESProyectoTema4'; // Nombre de usuario de la base de datos
-                $password = 'paso'; // Contraseña de la base de datos
-
+                require_once '../config/confDB.php';
+                
                 // Declaro una variable de entrada para mostrar o no la tabla con los valores de la BD
                 $entradaOK = true;
 
@@ -37,7 +33,7 @@
                      * USER -> Usuario con el que se conecta a la base de datos
                      * PASSWORD -> Contraseña del usuario
                      * */
-                    $miDB = new PDO('mysql:host=' . $host . '; dbname=' . $namedb, $usuario, $password);
+                    $miDB = new PDO(dsn,usuario,password);
 
                     /**
                      * Modificamos los errores y añadimos los siguientes atributos de PDO

@@ -20,12 +20,7 @@
                  */
                 // Incluyo la libreria de validación para comprobar los campos
                 require_once '../core/231018libreriaValidacion.php';
-
-                // Inicizalicación de variables de uso
-                $host = '192.168.20.19'; // Nombre del servidor de la base de datos erroneo
-                $namedb = 'DB202DWESProyectoTema4'; // Nombre de la base de datos
-                $usuario = 'user202DWESProyectoTema4'; // Nombre de usuario de la base de datos
-                $password = 'paso'; // Contraseña de la base de datos
+                require_once '../config/confDB.php';
 
                 // Defino una constante para la fecha y hora actual
                 define('FECHA_ACTUAL', date('Y-m-d H:i:s'));
@@ -36,7 +31,7 @@
                 try {
                     // CONEXION CON LA BD
                     // Establecemos la conexión por medio de PDO
-                    $miDB = new PDO('mysql:host=' . $host . '; dbname=' . $namedb, $usuario, $password);
+                    $miDB = new PDO(dsn,usuario,password);
                     $miDB->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // Configuramos las excepciones
                     // CONSULTAS Y TRANSACCION
                     $miDB->beginTransaction(); // Deshabilitamos el modo autocommit
