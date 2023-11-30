@@ -12,20 +12,38 @@
         </header>
         <table>
             <tr>
+                <th>Fichero de configuración</th>
+                <th>Codigo</th>
+            </tr>
+            <tr>
+                <td>Configuración DB</td>
+                <td><a href="mostrarcodigo/muestraConfigDB.php">Visualizar</a></td>
+            </tr>
+        </table>
+        <table>
+            <tr>
                 <th>Script BD</th>
                 <th>Codigo</th>
+                <th>Ejecutar - Explotación</th>
+                <th>Codigo - Explotación</th>
             </tr>
             <tr>
                 <td>CreaDB202DWESProyectoTema4.sql</td>
                 <td><a href="mostrarcodigo/muestraEjercicioSQL00.php">Visualizar</a></td>
+                <td><a href="scriptDB/CreaDB202DWESProyectoTema4.php">Ejecutar</a></td>
+                <td><a href="mostrarcodigo/muestraEjercicioSQL00_EXP.php">Visualizar</a></td>
             </tr>
             <tr>
                 <td>CargaInicialDB202DWESProyectoTema4.sql</td>
                 <td><a href="mostrarcodigo/muestraEjercicioSQL01.php">Visualizar</a></td>
+                <td><a href="scriptDB/CargaInicialDB202DWESProyectoTema4.php">Ejecutar</a></td>
+                <td><a href="mostrarcodigo/muestraEjercicioSQL01_EXP.php">Visualizar</a></td>
             </tr>
             <tr>
                 <td>BorraDB202DWESProyectoTema4.sql</td>
                 <td><a href="mostrarcodigo/muestraEjercicioSQL02.php">Visualizar</a></td>
+                <td><a href="scriptDB/BorraDB202DWESProyectoTema4.php">Ejecutar</a></td>
+                <td><a href="mostrarcodigo/muestraEjercicioSQL02_EXP.php">Visualizar</a></td>
             </tr>
         </table>
         <table>
