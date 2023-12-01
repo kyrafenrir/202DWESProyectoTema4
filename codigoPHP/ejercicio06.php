@@ -19,7 +19,7 @@
                  * @since 20/11/2023
                  */
 
-                require_once '../config/confDB.php';
+                require_once '../config/configDB.php';
 
                 // Declaro una variable de entrada para mostrar o no la tabla con los valores de la BD
                 $bEntradaOK = true;
@@ -58,19 +58,19 @@
                     // CONSULTAS Y TRANSACCION
                     $miDB->beginTransaction(); // Deshabilitamos el modo autocommit
                     // Consultas SQL de inserción 
-                    $consultaInsercion = "INSERT Departamento(CodDepartamento, DescDepartamento, FechaCreacionDepartamento, VolumenNegocio, FechaBaja) "
-                            . "VALUES (:CodDepartamento, :DescDepartamento, :FechaCreacionDepartamento, :VolumenNegocio, :FechaBaja)";
+                    $consultaInsercion = "INSERT T02_Departamento(T02_CodDepartamento, T02_DescDepartamento, T02_FechaCreacionDepartamento, T02_VolumenDeNegocio, T02_FechaBajaDepartamento) "
+                            . "VALUES (:T02_CodDepartamento, :T02_DescDepartamento, :T02_FechaCreacionDepartamento, :T02_VolumenDeNegocio, :T02_FechaBajaDepartamento)";
 
                     // Preparamos las consultas
                     $resultadoconsultaInsercion = $miDB->prepare($consultaInsercion);
 
                     foreach ($aContenidoDecodificadoArchivoJSON as $departamento) {
                         // Recorremos los registros que vamos a insertar en la tabla
-                        $codDepartamento = $departamento['codDepartamento'];
-                        $descDepartamento = $departamento['descDepartamento'];
-                        $fechaCreacionDepartamento = $departamento['fechaCreacionDepartamento'];
-                        $volumenNegocio = $departamento['volumenNegocio'];
-                        $fechaBaja = $departamento['fechaBaja'];
+                        $T02_CodDepartamento = $departamento['T02_CodDepartamento'];
+                        $T02_DescDepartamento = $departamento['T02_DescDepartamento'];
+                        $T02_FechaCreacionDepartamento = $departamento['T02_FechaCreacionDepartamento'];
+                        $T02_VolumenDeNegocio = $departamento['T02_VolumenDeNegocio'];
+                        $T02_FechaBajaDepartamento = $departamento['T02_FechaBajaDepartamento'];
 
                         // Si la fecha de baja está vacía asignamos el valor 'NULL'
                         if (empty($fechaBaja)) {
@@ -78,11 +78,11 @@
                         }
                         
                         $aRegistros = [
-                            ':CodDepartamento' => $codDepartamento,
-                            ':DescDepartamento' => $descDepartamento,
-                            ':FechaCreacionDepartamento' => $fechaCreacionDepartamento,
-                            ':VolumenNegocio' => $volumenNegocio,
-                            ':FechaBaja' => $fechaBaja
+                            ':T02_CodDepartamento' => $T02_CodDepartamento,
+                            ':T02_DescDepartamento' => $T02_DescDepartamento,
+                            ':T02_FechaCreacionDepartamento' => $T02_FechaCreacionDepartamento,
+                            ':T02_VolumenDeNegocio' => $T02_VolumenDeNegocio,
+                            ':T02_FechaBajaDepartamento' => $T02_FechaBajaDepartamento
                         ];
                         
                         if (!$resultadoconsultaInsercion->execute($aRegistros)) {
@@ -98,7 +98,7 @@
                         echo ("<div class='respuestaCorrecta'>Los datos se han insertado correctamente en la tabla Departamento.</div><br>");
 
                         // Preparamos y ejecutamos la consulta SQL
-                        $consulta = "SELECT * FROM Departamento";
+                        $consulta = "SELECT * FROM T02_Departamento";
                         $resultadoConsultaPreparada = $miDB->prepare($consulta);
                         $resultadoConsultaPreparada->execute();
 
@@ -122,11 +122,11 @@
                         echo ("<tbody>");
                         while ($oDepartamento = $resultadoConsultaPreparada->fetchObject()) {
                             echo ("<tr>");
-                            echo ("<td>" . $oDepartamento->CodDepartamento . "</td>");
-                            echo ("<td>" . $oDepartamento->DescDepartamento . "</td>");
-                            echo ("<td>" . $oDepartamento->FechaCreacionDepartamento . "</td>");
-                            echo ("<td>" . $oDepartamento->VolumenNegocio . "</td>");
-                            echo ("<td>" . $oDepartamento->FechaBaja . "</td>");
+                            echo ("<td>" . $oDepartamento->T02_CodDepartamento . "</td>");
+                            echo ("<td>" . $oDepartamento->T02_DescDepartamento . "</td>");
+                            echo ("<td>" . $oDepartamento->T02_FechaCreacionDepartamento . "</td>");
+                            echo ("<td>" . $oDepartamento->T02_VolumenDeNegocio . "</td>");
+                            echo ("<td>" . $oDepartamento->T02_FechaBajaDepartamento . "</td>");
                             echo ("</tr>");
                         }
 

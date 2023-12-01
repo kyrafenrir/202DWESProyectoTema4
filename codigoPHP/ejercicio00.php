@@ -18,7 +18,7 @@
                 * Created: 06/11/2023
                 */
                 
-                require_once '../config/confDB.php';
+                require_once '../config/configDB.php';
                 
                 $attributesPDO = array(
                     'AUTOCOMMIT', 'ERRMODE', 

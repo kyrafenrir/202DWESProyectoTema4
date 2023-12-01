@@ -50,7 +50,7 @@
             
                 // Utilizacion de la libreria de validacion donde se incluyen los metodos de validacion de las entradas del formulario
                 require_once '../core/231018libreriaValidacion.php';
-                require_once '../config/confDB.php';
+                require_once '../config/configDB.php';
                 
                 try {
                     // Establecemos la conexión con la base de datos
@@ -60,16 +60,16 @@
                     $_REQUEST['date'] = date('Y-m-d'); // Inicializamos la variable global para la fehca dandole el formato para insertar
                     
                     $aErrores = [
-                        'descripcion' => '',
+                        'T02_DescDepartamento' => '',
                     ]; // Inicializacion del array donde recogemos los errores 
                     $aRespuestas = [
-                        'descripcion' => '',
+                        'T02_DescDepartamento' => '',
                     ]; // Inicializacion del array donde recogemos las respuestas
 
                     // Cargar valores por defecto en los campos del formulario
                     if(isset($_REQUEST['submit'])){
                         // Validacion de la entrada y actuar en consecuencia
-                        $aErrores['descripcion'] = validacionFormularios::comprobarAlfabetico($_REQUEST['descripcion'],255,0,0);
+                        $aErrores['T02_DescDepartamento'] = validacionFormularios::comprobarAlfabetico($_REQUEST['T02_DescDepartamento'],255,0,0);
                         
                         // Foreach para recorrer el array de errores
                         foreach($aErrores as $campo => $error){
@@ -93,7 +93,7 @@
                             <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="POST" name="ejercicio03">
                                 <div>
                                     <label> Búsqueda: </label>
-                                    <input type="text" name="descripcion" value="<?php echo (isset($_REQUEST['descripcion']) ? $_REQUEST['descripcion'] : ''); ?>" size="32" placeholder="Búsqueda."><?php echo(' <span>'.$aErrores['descripcion'].'</span>');?>
+                                    <input type="text" name="T02_DescDepartamento" value="<?php echo (isset($_REQUEST['T02_DescDepartamento']) ? $_REQUEST['T02_DescDepartamento'] : ''); ?>" size="32" placeholder="Búsqueda."><?php echo(' <span>'.$aErrores['T02_DescDepartamento'].'</span>');?>
                                     <br>
                                     <input type="submit" name="submit" value="Buscar">
                                 </div>
@@ -101,10 +101,10 @@
                         <?php
             
                          // Se añaden al array $aRespuestas las respuestas cuando son correctas
-                        $aRespuestas['descripcion'] = $_REQUEST['descripcion'];
+                        $aRespuestas['T02_DescDepartamento'] = $_REQUEST['T02_DescDepartamento'];
                             
                             // Se preparan las consultas
-                            $consulta = $miDB->prepare('select * from Departamento where DescDepartamento like "%'.$aRespuestas['descripcion'].'%"');
+                            $consulta = $miDB->prepare('select * from T02_Departamento where T02_DescDepartamento like "%'.$aRespuestas['T02_DescDepartamento'].'%"');
                             // Se ejecuta la consulta
                             $consulta->execute();
                             // Se crea una tabla para imprimir las tuplas
@@ -112,11 +112,11 @@
                             echo('<table><tr><th>Código</th><th>Descripción</th><th>Fecha de creación</th><th>Volumen</th><th>Fecha de baja</th></tr>');
                             while($oDepartamento = $consulta->fetchObject()){// TAMBIEN SE PUEDE REALIZAR CON fetch(PDO::FETCH_OBJ)
                                 echo('<tr>');
-                                echo('<td>'.$oDepartamento->CodDepartamento.'</td>');
-                                echo('<td>'.$oDepartamento->DescDepartamento.'</td>');
-                                echo('<td>'.$oDepartamento->FechaCreacionDepartamento.'</td>');
-                                echo('<td>'.$oDepartamento->VolumenNegocio.'</td>');
-                                echo('<td>'.$oDepartamento->FechaBaja.'</td>');
+                                echo('<td>'.$oDepartamento->T02_CodDepartamento.'</td>');
+                                echo('<td>'.$oDepartamento->T02_DescDepartamento.'</td>');
+                                echo('<td>'.$oDepartamento->T02_FechaCreacionDepartamento.'</td>');
+                                echo('<td>'.$oDepartamento->T02_VolumenDeNegocio.'</td>');
+                                echo('<td>'.$oDepartamento->T02_FechaBajaDepartamento.'</td>');
                                 echo('</tr>');
                             }
                             echo('</table><br>');
@@ -131,14 +131,14 @@
                         <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="POST" name="ejercicio03">
                             <div>
                                 <label> Búsqueda: </label>
-                                <input type="text" name="descripcion" value="<?php echo (isset($_REQUEST['descripcion']) ? $_REQUEST['descripcion'] : ''); ?>" size="32" placeholder="Búsqueda."><?php echo(' <span>'.$aErrores['descripcion'].'</span>');?>
+                                <input type="text" name="T02_DescDepartamento" value="<?php echo (isset($_REQUEST['T02_DescDepartamento']) ? $_REQUEST['T02_DescDepartamento'] : ''); ?>" size="32" placeholder="Búsqueda."><?php echo(' <span>'.$aErrores['T02_DescDepartamento'].'</span>');?>
                                 <br>
                                 <input type="submit" name="submit" value="Buscar">
                             </div>
                         </form>
                         <?php
                     
-                        $consulta = $miDB->prepare('select * from Departamento');
+                        $consulta = $miDB->prepare('select * from T02_Departamento');
                         // Se ejecuta la consulta
                         $consulta->execute();
                         // Se crea una tabla para imprimir las tuplas
@@ -146,12 +146,12 @@
                         echo('<table><tr><th>Código</th><th>Descripción</th><th>Fecha de creación</th><th>Volumen</th><th>Fecha de baja</th></tr>');
                         while($oDepartamento = $consulta->fetchObject()){// TAMBIEN SE PUEDE REALIZAR CON fetch(PDO::FETCH_OBJ)
                             echo('<tr>');
-                            echo('<td>'.$oDepartamento->CodDepartamento.'</td>');
-                            echo('<td>'.$oDepartamento->DescDepartamento.'</td>');
-                            echo('<td>'.$oDepartamento->FechaCreacionDepartamento.'</td>');
-                            echo('<td>'.$oDepartamento->VolumenNegocio.'</td>');
-                            echo('<td>'.$oDepartamento->FechaBaja.'</td>');
-                            echo('</tr>');
+                                echo('<td>'.$oDepartamento->T02_CodDepartamento.'</td>');
+                                echo('<td>'.$oDepartamento->T02_DescDepartamento.'</td>');
+                                echo('<td>'.$oDepartamento->T02_FechaCreacionDepartamento.'</td>');
+                                echo('<td>'.$oDepartamento->T02_VolumenDeNegocio.'</td>');
+                                echo('<td>'.$oDepartamento->T02_FechaBajaDepartamento.'</td>');
+                                echo('</tr>');
                         }
                         echo('</table><br>');
                         echo('</div><br><br>');  

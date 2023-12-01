@@ -19,7 +19,7 @@
                  * @since 18/11/2023
                  */
                 
-                require_once '../config/confDB.php';
+                require_once '../config/configDB.php';
                 
                 // Declaro una variable de entrada para mostrar o no la tabla con los valores de la BD
                 $entradaOK = true;
@@ -44,7 +44,7 @@
                      * Declaracion de la consulta SQL 
                      * En este caso hacemos un select de la tabla Departamanetos
                      */
-                    $sql1 = 'SELECT * FROM Departamento';
+                    $sql1 = 'SELECT * FROM T02_Departamento';
 
                     //Preparamos la consulta que previamente vamos a ejecutar
                     $resultadoConsulta = $miDB->prepare($sql1);
@@ -75,11 +75,11 @@
                     while ($oResultado) {
                         //Guardamos los valores en un array asociativo
                         $aDepartamento = [
-                            'codDepartamento' => $oResultado->CodDepartamento,
-                            'descDepartamento' => $oResultado->DescDepartamento,
-                            'fechaCreacionDepartamento' => $oResultado->FechaCreacionDepartamento,
-                            'volumenNegocio' => $oResultado->VolumenNegocio,
-                            'fechaBaja' => $oResultado->FechaBaja
+                            'T02_CodDepartamento' => $oResultado->T02_CodDepartamento,
+                            'T02_DescDepartamento' => $oResultado->T02_DescDepartamento,
+                            'T02_FechaCreacionDepartamento' => $oResultado->T02_FechaCreacionDepartamento,
+                            'T02_VolumenDeNegocio' => $oResultado->T02_VolumenDeNegocio,
+                            'T02_FechaBajaDepartamento' => $oResultado->T02_FechaBajaDepartamento
                         ];
 
                         // Añadimos el array $aDepartamento al array $aDepartamentos

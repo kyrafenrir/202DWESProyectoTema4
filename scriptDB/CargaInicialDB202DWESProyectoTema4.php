@@ -8,18 +8,16 @@
  * @Annotation Scrip de carga inicial de la base de datos en PHP
  * 
  */
+
 // Configuración de conexión con la base de datos
-require_once '../config/confDB.php';
+require_once '../config/configDB.php';
 
 try {
     // Crear conexión
-    $conn = new PDO(dsn, usuario, password);
-
-    // Me posiciono en la base de datos
-    $query1 = "USE dbs12302406";
+    $conn = new PDO(dsn,usuario,password);
 
     // Inserto los datos iniciales en la tabla Departamento
-    $query2 = "INSERT INTO T02_Departamento (T02_CodDepartamento, T02_DescDepartamento, T02_FechaCreacionDepartamento, T02_VolumenDeNegocio, T02_FechaBajaDepartamento) VALUES
+    $query1 = "INSERT INTO T02_Departamento (T02_CodDepartamento, T02_DescDepartamento, T02_FechaCreacionDepartamento, T02_VolumenDeNegocio, T02_FechaBajaDepartamento) VALUES
     ('DAW', 'Desarrollo de aplicaciones web', NOW(), 10.50, NULL),
     ('DAM', 'Desarrollo de aplicaciones multiplataforma', NOW(), 5.50, NULL),
     ('ASI', 'Administracion de sistemas informaticos en red', NOW(), 6.7, NULL),
@@ -27,7 +25,7 @@ try {
     ('DTI', 'Dibujo tecnico industrial', NOW(), 13.2, NULL)";
    
     // Ejecutar consultas SQL
-    $sql_queries = [$query1, $query2];
+    $sql_queries = [$query1];
 
     foreach ($sql_queries as $query) {
         if ($conn->query($query) === FALSE) {

@@ -1,23 +1,23 @@
 [
     {
-        "codDepartamento": "AAA",
-        "descDepartamento": "Departamento de Ventas",
-        "fechaCreacionDepartamento": "2023-11-13 13:06:00",
-        "volumenNegocio": 100000,
-        "fechaBaja": null
+        "T02_CodDepartamento": "AAA",
+        "T02_DescDepartamento": "Departamento de Ventas",
+        "T02_FechaCreacionDepartamento": "2023-11-13 13:06:00",
+        "T02_VolumenDeNegocio": 100000,
+        "T02_FechaBajaDepartamento": null
     },
     {
-        "codDepartamento": "AAB",
-        "descDepartamento": "Departamento de Marketing",
-        "fechaCreacionDepartamento": "2023-11-13 13:06:00",
-        "volumenNegocio": 50089.5,
-        "fechaBaja": null
+        "T02_CodDepartamento": "AAB",
+        "T02_DescDepartamento": "Departamento de Marketing",
+        "T02_FechaCreacionDepartamento": "2023-11-13 13:06:00",
+        "T02_VolumenDeNegocio": 50089.5,
+        "T02_FechaBajaDepartamento": null
     },
     {
-        "codDepartamento": "AAC",
-        "descDepartamento": "Departamento de Finanzas",
-        "fechaCreacionDepartamento": "2022-11-13 13:06:00",
-        "volumenNegocio": 600.5,
-        "fechaBaja": "2023-11-13 13:06:00"
+        "T02_CodDepartamento": "AAC",
+        "T02_DescDepartamento": "Departamento de Finanzas",
+        "T02_FechaCreacionDepartamento": "2022-11-13 13:06:00",
+        "T02_VolumenDeNegocio": 600.5,
+        "T02_FechaBajaDepartamento": "2023-11-13 13:06:00"
     }
 ]

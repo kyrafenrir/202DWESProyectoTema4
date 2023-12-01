@@ -17,14 +17,14 @@
                 * Created: 06/11/2023
                 */
                 
-                require_once '../config/confDB.php';
+                require_once '../config/configDB.php';
                 
                 try {
                     // Establecemos la conexión con la base de datos
                     $miDB = new PDO(dsn,usuario,password);
                     
                     // Se preparan las consultas
-                    $consulta = $miDB->prepare('select * from Departamento');
+                    $consulta = $miDB->prepare('select * from T02_Departamento');
                     // Se ejecuta la consulta
                     $consulta->execute();
                     // Se almacena el numero de filas afectadas
@@ -33,11 +33,11 @@
                     echo('<table><tr><th>Código</th><th>Descripción</th><th>Fecha de creación</th><th>Volumen</th><th>Fecha de baja</th></tr>');
                     while($oDepartamento = $consulta->fetchObject()){// TAMBIEN SE PUEDE REALIZAR CON fetch(PDO::FETCH_OBJ)
                         echo('<tr>');
-                        echo('<td>'.$oDepartamento->CodDepartamento.'</td>');
-                        echo('<td>'.$oDepartamento->DescDepartamento.'</td>');
-                        echo('<td>'.$oDepartamento->FechaCreacionDepartamento.'</td>');
-                        echo('<td>'.$oDepartamento->VolumenNegocio.'</td>');
-                        echo('<td>'.$oDepartamento->FechaBaja.'</td>');
+                        echo('<td>'.$oDepartamento->T02_CodDepartamento.'</td>');
+                        echo('<td>'.$oDepartamento->T02_DescDepartamento.'</td>');
+                        echo('<td>'.$oDepartamento->T02_FechaCreacionDepartamento.'</td>');
+                        echo('<td>'.$oDepartamento->T02_VolumenDeNegocio.'</td>');
+                        echo('<td>'.$oDepartamento->T02_FechaBajaDepartamento.'</td>');
                         echo('</tr>');
                     }
                     echo('</table><br>');
@@ -55,7 +55,7 @@
                     $miDB = new PDO(dsn,usuario,password);
                     
                     // Se preparan las consultas
-                    $consulta = $miDB->query('select * from Departamento');
+                    $consulta = $miDB->query('select * from T02_Departamento');
                     // Se almacena el numero de filas afectadas
                     $count = $consulta->rowCount();
                     // Se crea una tabla para imprimir las tuplas
@@ -63,11 +63,11 @@
                     // Se recorre cada fila, es decir, cada departamento
                     while($oDepartamento = $consulta->fetchObject()){// TAMBIEN SE PUEDE REALIZAR CON fetch(PDO::FETCH_OBJ)
                         echo('<tr>');
-                        echo('<td>'.$oDepartamento->CodDepartamento.'</td>');
-                        echo('<td>'.$oDepartamento->DescDepartamento.'</td>');
-                        echo('<td>'.$oDepartamento->FechaCreacionDepartamento.'</td>');
-                        echo('<td>'.$oDepartamento->VolumenNegocio.'</td>');
-                        echo('<td>'.$oDepartamento->FechaBaja.'</td>');
+                        echo('<td>'.$oDepartamento->T02_CodDepartamento.'</td>');
+                        echo('<td>'.$oDepartamento->T02_DescDepartamento.'</td>');
+                        echo('<td>'.$oDepartamento->T02_FechaCreacionDepartamento.'</td>');
+                        echo('<td>'.$oDepartamento->T02_VolumenDeNegocio.'</td>');
+                        echo('<td>'.$oDepartamento->T02_FechaBajaDepartamento.'</td>');
                         echo('</tr>');
                     }
                     echo('</table><br>');

@@ -50,28 +50,28 @@
             
                 // Utilizacion de la libreria de validacion donde se incluyen los metodos de validacion de las entradas del formulario
                 require_once '../core/231018libreriaValidacion.php';
-                require_once '../config/confDB.php';
+                require_once '../config/configDB.php';
                 
-                $_REQUEST['FechaCreacionDepartamento'] = date('Y-m-d / H:i:s'); // Inicializamos la variable global para la fehca dandole el formato para insertar
+                $_REQUEST['T02_FechaCreacionDepartamento'] = date('Y-m-d / H:i:s'); // Inicializamos la variable global para la fehca dandole el formato para insertar
 
                 $aErrores = [
-                    'CodDepartamento' => '',
-                    'DescDepartamento' => '',
-                    'FechaCreacionDepartamento' => '',
-                    'VolumenNegocio' => '',
-                    'FechaBaja' => '',
+                    'T02_CodDepartamento' => '',
+                    'T02_DescDepartamento' => '',
+                    'T02_FechaCreacionDepartamento' => '',
+                    'T02_VolumenDeNegocio' => '',
+                    'T02_FechaBajaDepartamento' => '',
                 ]; // Inicializacion del array donde recogemos los errores 
                 $aRespuestas = [
-                    'CodDepartamento' => '',
-                    'DescDepartamento' => '',
-                    'FechaCreacionDepartamento' => '',
-                    'VolumenNegocio' => '',
-                    'FechaBaja' => '',
+                    'T02_CodDepartamento' => '',
+                    'T02_DescDepartamento' => '',
+                    'T02_FechaCreacionDepartamento' => '',
+                    'T02_VolumenDeNegocio' => '',
+                    'T02_FechaBajaDepartamento' => '',
                 ]; // Inicializacion del array donde recogemos las respuestas
                 // Cargar valores por defecto en los campos del formulario
                 if (isset($_REQUEST['submit'])) {
                     // Validacion de la entrada y actuar en consecuencia
-                    $aErrores['CodDepartamento'] = validacionFormularios::comprobarAlfabetico($_REQUEST['CodDepartamento'], 3, 3, 1);
+                    $aErrores['T02_CodDepartamento'] = validacionFormularios::comprobarAlfabetico($_REQUEST['T02_CodDepartamento'], 3, 3, 1);
 
                     try {
                         // Establecemos la conexión con la base de datos
@@ -79,7 +79,7 @@
                         // Inicializacion de variables
                         $entradaOK = true; // Inizacion de la variable que indica que todo en el formulario esta correctamente
                         // Momento de insercción en tabla
-                        $consultaCodComprobacion = 'select CodDepartamento from Departamento where CodDepartamento="' . $_REQUEST['CodDepartamento'] . '"';
+                        $consultaCodComprobacion = 'select T02_CodDepartamento from T02_Departamento where T02_CodDepartamento="' . $_REQUEST['T02_CodDepartamento'] . '"';
 
                         // Consulta preparada
                         $resultadoConsultaCodComprobacion = $miDB->prepare($consultaCodComprobacion);
@@ -93,12 +93,12 @@
                         echo ("ERROR DE CONEXIÓN " . $pdoEx->getMessage());
                     }
 
-                    $aErrores['DescDepartamento'] = validacionFormularios::comprobarAlfabetico($_REQUEST['DescDepartamento'], 255, 8, 1);
-                    $aErrores['VolumenNegocio'] = validacionFormularios::comprobarFloat($_REQUEST['VolumenNegocio'], 1000000000, 0, 1);
+                    $aErrores['T02_DescDepartamento'] = validacionFormularios::comprobarAlfabetico($_REQUEST['T02_DescDepartamento'], 255, 8, 1);
+                    $aErrores['T02_VolumenDeNegocio'] = validacionFormularios::comprobarFloat($_REQUEST['T02_VolumenDeNegocio'], 1000000000, 0, 1);
 
                     // Comprobación de error
                     if ($departamentoExiste) {
-                        $aErrores['CodDepartamento'] = "Código de departamento introducido ya es existente.";
+                        $aErrores['T02_CodDepartamento'] = "Código de departamento introducido ya es existente.";
                     }
 
                     // Foreach para recorrer el array de errores
@@ -119,25 +119,25 @@
                 if ($entradaOK) {
                     // Tratamiento de datos
                     echo "<h2>Datos del nuevo departamento:</h2>";
-                    echo "Codigo de departamento: " . $_REQUEST['CodDepartamento'] . "<br>";
-                    echo "Descripción del departamento: " . $_REQUEST['DescDepartamento'] . "<br>";
-                    echo "Fecha de creación: " . $_REQUEST['FechaCreacionDepartamento'] . "<br>";
-                    echo "Volumen de negocio: " . $_REQUEST['VolumenNegocio'] . "<br>";
-                    echo "Fecha de baja: " . $aRespuestas['FechaBaja'] . "<br><br>";
+                    echo "Codigo de departamento: " . $_REQUEST['T02_CodDepartamento'] . "<br>";
+                    echo "Descripción del departamento: " . $_REQUEST['T02_DescDepartamento'] . "<br>";
+                    echo "Fecha de creación: " . $_REQUEST['T02_FechaCreacionDepartamento'] . "<br>";
+                    echo "Volumen de negocio: " . $_REQUEST['T02_VolumenDeNegocio'] . "<br>";
+                    echo "Fecha de baja: " . $aRespuestas['T02_FechaBajaDepartamento'] . "<br><br>";
 
                     // Se añaden al array $aRespuestas las respuestas cuando son correctas
-                    $aRespuestas['CodDepartamento'] = $_REQUEST['CodDepartamento'];
-                    $aRespuestas['DescDepartamento'] = $_REQUEST['DescDepartamento'];
-                    $aRespuestas['FechaCreacionDepartamento'] = $_REQUEST['FechaCreacionDepartamento'];
-                    $aRespuestas['VolumenNegocio'] = $_REQUEST['VolumenNegocio'];
-                    $aRespuestas['FechaBaja'] = 'null';
+                    $aRespuestas['T02_CodDepartamento'] = $_REQUEST['T02_CodDepartamento'];
+                    $aRespuestas['T02_DescDepartamento'] = $_REQUEST['T02_DescDepartamento'];
+                    $aRespuestas['T02_FechaCreacionDepartamento'] = $_REQUEST['T02_FechaCreacionDepartamento'];
+                    $aRespuestas['T02_VolumenDeNegocio'] = $_REQUEST['T02_VolumenDeNegocio'];
+                    $aRespuestas['T02_FechaBajaDepartamento'] = 'null';
 
                     try {
                         // Establecemos la conexión con la base de datos
                         $miDB = new PDO(dsn,usuario,password);
                         
                         // Momento de insercción en tabla
-                        $consulta = 'insert into Departamento values ("' . $aRespuestas['CodDepartamento'] . '","' . $aRespuestas['DescDepartamento'] . '","' . $aRespuestas['FechaCreacionDepartamento']. '",' . $aRespuestas['VolumenNegocio'] . ',' . $aRespuestas['FechaBaja'] . ');';
+                        $consulta = 'insert into T02_Departamento values ("' . $aRespuestas['T02_CodDepartamento'] . '","' . $aRespuestas['T02_DescDepartamento'] . '","' . $aRespuestas['T02_FechaCreacionDepartamento']. '",' . $aRespuestas['T02_VolumenDeNegocio'] . ',' . $aRespuestas['T02_FechaBajaDepartamento'] . ');';
 
                         // Consulta preparada
                         $resultadoConsulta = $miDB->prepare($consulta);
@@ -150,7 +150,7 @@
                         }
 
                         // Se preparan las consultas
-                        $consulta = $miDB->prepare('select * from Departamento');
+                        $consulta = $miDB->prepare('select * from T02_Departamento');
                         // Se ejecuta la consulta
                         $consulta->execute();
 
@@ -164,11 +164,11 @@
                     echo('<table><tr><th>Código</th><th>Descripción</th><th>Fecha de creación</th><th>Volumen</th><th>Fecha de baja</th></tr>');
                     while($oDepartamento = $consulta->fetchObject()){// TAMBIEN SE PUEDE REALIZAR CON fetch(PDO::FETCH_OBJ)
                         echo('<tr>');
-                        echo('<td>'.$oDepartamento->CodDepartamento.'</td>');
-                        echo('<td>'.$oDepartamento->DescDepartamento.'</td>');
-                        echo('<td>'.$oDepartamento->FechaCreacionDepartamento.'</td>');
-                        echo('<td>'.$oDepartamento->VolumenNegocio.'</td>');
-                        echo('<td>'.$oDepartamento->FechaBaja.'</td>');
+                        echo('<td>'.$oDepartamento->T02_CodDepartamento.'</td>');
+                        echo('<td>'.$oDepartamento->T02_DescDepartamento.'</td>');
+                        echo('<td>'.$oDepartamento->T02_FechaCreacionDepartamento.'</td>');
+                        echo('<td>'.$oDepartamento->T02_VolumenDeNegocio.'</td>');
+                        echo('<td>'.$oDepartamento->T02_FechaBajaDepartamento.'</td>');
                         echo('</tr>');
                     }
                     echo('</table><br>');
@@ -182,19 +182,19 @@
                             <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST" name="ejercicio02">
                                 <div>
                                     <label> Siglas del departamento: </label>
-                                    <input type="text" name="CodDepartamento" value="<?php echo (isset($_REQUEST['CodDepartamento']) ? $_REQUEST['CodDepartamento'] : ''); ?>" size="32" placeholder="Las siglas del departamento."><?php echo(' <span>' . $aErrores['CodDepartamento'] . '</span>'); ?>
+                                    <input type="text" name="T02_CodDepartamento" value="<?php echo (isset($_REQUEST['T02_CodDepartamento']) ? $_REQUEST['T02_CodDepartamento'] : ''); ?>" size="32" placeholder="Las siglas del departamento."><?php echo(' <span>' . $aErrores['T02_CodDepartamento'] . '</span>'); ?>
                                     <br>
                                     <label> Descripción del departamento: </label>
-                                    <input type="text" name="DescDepartamento" value="<?php echo (isset($_REQUEST['DescDepartamento']) ? $_REQUEST['DescDepartamento'] : ''); ?>" size="32" placeholder="Descripción del departamento."><?php echo(' <span>' . $aErrores['DescDepartamento'] . '</span>'); ?>
+                                    <input type="text" name="T02_DescDepartamento" value="<?php echo (isset($_REQUEST['T02_DescDepartamento']) ? $_REQUEST['T02_DescDepartamento'] : ''); ?>" size="32" placeholder="Descripción del departamento."><?php echo(' <span>' . $aErrores['T02_DescDepartamento'] . '</span>'); ?>
                                     <br>
                                     <label> Fecha de creación: </label>
-                                    <input type="text" name="FechaCreacionDepartamento" value="<?php echo $_REQUEST['FechaCreacionDepartamento']; ?>" size="32" disabled><?php echo(' <span>' . $aErrores['FechaCreacionDepartamento'] . '</span>'); ?>
+                                    <input type="text" name="T02_FechaCreacionDepartamento" value="<?php echo $_REQUEST['T02_FechaCreacionDepartamento']; ?>" size="32" disabled><?php echo(' <span>' . $aErrores['T02_FechaCreacionDepartamento'] . '</span>'); ?>
                                     <br>
                                     <label> Volumen de negocio: </label>
-                                    <input type="text" name="VolumenNegocio" value="<?php echo (isset($_REQUEST['VolumenNegocio']) ? $_REQUEST['VolumenNegocio'] : ''); ?>" size="32" placeholder="Indica el volumen."><?php echo(' <span>' . $aErrores['VolumenNegocio'] . '</span>'); ?>
+                                    <input type="text" name="T02_VolumenDeNegocio" value="<?php echo (isset($_REQUEST['T02_VolumenDeNegocio']) ? $_REQUEST['T02_VolumenDeNegocio'] : ''); ?>" size="32" placeholder="Indica el volumen."><?php echo(' <span>' . $aErrores['T02_VolumenDeNegocio'] . '</span>'); ?>
                                     <br>
                                     <label> Fecha de baja: </label>
-                                    <input type="text" name="FechaBaja" value="<?php echo (isset($_REQUEST['FechaBaja']) ? $_REQUEST['FechaBaja'] : ''); ?>" size="32" placeholder="YYYY-MM-DD" disabled><?php echo(' <span>' . $aErrores['FechaBaja'] . '</span>'); ?>
+                                    <input type="text" name="T02_FechaBajaDepartamento" value="<?php echo (isset($_REQUEST['T02_FechaBajaDepartamento']) ? $_REQUEST['T02_FechaBajaDepartamento'] : ''); ?>" size="32" placeholder="YYYY-MM-DD" disabled><?php echo(' <span>' . $aErrores['T02_FechaBajaDepartamento'] . '</span>'); ?>
                                     <br><br>
                                     <input type="submit" name="submit" value="Enviar datos">
                                 </div>

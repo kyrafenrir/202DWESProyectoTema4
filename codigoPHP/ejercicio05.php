@@ -20,7 +20,7 @@
                  */
                 // Incluyo la libreria de validación para comprobar los campos
                 require_once '../core/231018libreriaValidacion.php';
-                require_once '../config/confDB.php';
+                require_once '../config/configDB.php';
 
                 // Defino una constante para la fecha y hora actual
                 define('FECHA_ACTUAL', date('Y-m-d H:i:s'));
@@ -36,24 +36,24 @@
                     // CONSULTAS Y TRANSACCION
                     $miDB->beginTransaction(); // Deshabilitamos el modo autocommit
                     // Consultas SQL de inserción 
-                    $consultaInsercion = "INSERT Departamento(CodDepartamento, DescDepartamento, FechaCreacionDepartamento, VolumenNegocio, FechaBaja) "
-                            . "VALUES (:CodDepartamento, :DescDepartamento, :FechaCreacionDepartamento, :VolumenNegocio, :FechaBaja)";
+                    $consultaInsercion = "INSERT T02_Departamento(T02_CodDepartamento, T02_DescDepartamento, T02_FechaCreacionDepartamento, T02_VolumenDeNegocio, T02_FechaBajaDepartamento) "
+                            . "VALUES (:T02_CodDepartamento, :T02_DescDepartamento, :T02_FechaCreacionDepartamento, :T02_VolumenDeNegocio, :T02_FechaBajaDepartamento)";
 
                     // Preparamos las consultas
                     $resultadoconsultaInsercion = $miDB->prepare($consultaInsercion);
 
                     // ARRAY CON REGISTROS
                     $aDepartamentosNuevos = [
-                        ['CodDepartamento' => 'AAG', 'DescDepartamento' => 'Departamento de Montaje', 'FechaCreacionDepartamento' => FECHA_ACTUAL, 'VolumenNegocio' => 11.9, 'FechaBaja' => null],
-                        ['CodDepartamento' => 'AAH', 'DescDepartamento' => 'Departamento de Desmontaje', 'FechaCreacionDepartamento' => FECHA_ACTUAL, 'VolumenNegocio' => 13.3, 'FechaBaja' => null]
+                        ['T02_CodDepartamento' => 'AAG', 'T02_DescDepartamento' => 'Departamento de Montaje', 'T02_FechaCreacionDepartamento' => FECHA_ACTUAL, 'T02_VolumenDeNegocio' => 11.9, 'T02_FechaBajaDepartamento' => null],
+                        ['T02_CodDepartamento' => 'AAH', 'T02_DescDepartamento' => 'Departamento de Desmontaje', 'T02_FechaCreacionDepartamento' => FECHA_ACTUAL, 'T02_VolumenDeNegocio' => 13.3, 'T02_FechaBajaDepartamento' => null]
                     ];
 
                     foreach ($aDepartamentosNuevos as $departamento) { //Recorremos los registros que vamos a insertar en la tabla
-                        $aResgistros = [':CodDepartamento' => $departamento['CodDepartamento'],
-                            ':DescDepartamento' => $departamento['DescDepartamento'],
-                            ':FechaCreacionDepartamento' => $departamento['FechaCreacionDepartamento'],
-                            ':VolumenNegocio' => $departamento['VolumenNegocio'],
-                            ':FechaBaja' => $departamento['FechaBaja']];
+                        $aResgistros = [':T02_CodDepartamento' => $departamento['T02_CodDepartamento'],
+                            ':T02_DescDepartamento' => $departamento['T02_DescDepartamento'],
+                            ':T02_FechaCreacionDepartamento' => $departamento['T02_FechaCreacionDepartamento'],
+                            ':T02_VolumenDeNegocio' => $departamento['T02_VolumenDeNegocio'],
+                            ':T02_FechaBajaDepartamento' => $departamento['T02_FechaBajaDepartamento']];
                         if (!$resultadoconsultaInsercion->execute($aResgistros)) {
                             $bEntradaOK = false;
                             break;
@@ -67,18 +67,18 @@
                         echo ("<div class='respuestaCorrecta'>Los datos se han insertado correctamente en la tabla Departamento.</div><br>");
 
                         // Preparamos y ejecutamos la consulta SQL
-                        $consulta = "SELECT * FROM Departamento";
+                        $consulta = "SELECT * FROM T02_Departamento";
                         $resultadoConsultaPreparada = $miDB->prepare($consulta);
                         $resultadoConsultaPreparada->execute();
 
                         echo('<table><tr><th>Código</th><th>Descripción</th><th>Fecha de creación</th><th>Volumen</th><th>Fecha de baja</th></tr>');
                         while ($oDepartamento = $resultadoConsultaPreparada->fetchObject()) {// TAMBIEN SE PUEDE REALIZAR CON fetch(PDO::FETCH_OBJ)
                             echo('<tr>');
-                            echo('<td>' . $oDepartamento->CodDepartamento . '</td>');
-                            echo('<td>' . $oDepartamento->DescDepartamento . '</td>');
-                            echo('<td>' . $oDepartamento->FechaCreacionDepartamento . '</td>');
-                            echo('<td>' . $oDepartamento->VolumenNegocio . '</td>');
-                            echo('<td>' . $oDepartamento->FechaBaja . '</td>');
+                            echo('<td>' . $oDepartamento->T02_CodDepartamento . '</td>');
+                            echo('<td>' . $oDepartamento->T02_DescDepartamento . '</td>');
+                            echo('<td>' . $oDepartamento->T02_FechaCreacionDepartamento . '</td>');
+                            echo('<td>' . $oDepartamento->T02_VolumenDeNegocio . '</td>');
+                            echo('<td>' . $oDepartamento->T02_FechaBajaDepartamento . '</td>');
                             echo('</tr>');
                         }
                         echo('</table><br>');

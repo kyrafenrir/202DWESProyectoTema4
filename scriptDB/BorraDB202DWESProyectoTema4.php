@@ -9,7 +9,7 @@
  * 
  */
 // Configuración de conexión con la base de datos
-require_once '../config/confDB.php';
+require_once '../config/configDB.php';
 
 try {
     // Crear conexión

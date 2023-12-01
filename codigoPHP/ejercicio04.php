@@ -20,7 +20,7 @@
                     */
                    // Incluyo la libreria de validación para comprobar los campos
                    require_once '../core/231018libreriaValidacion.php';
-                   require_once '../config/confDB.php';
+                   require_once '../config/configDB.php';
 
                    try {
                        // CONEXION CON LA BD
@@ -30,9 +30,9 @@
                        // CONSULTAS Y TRANSACCION
                        $miDB->beginTransaction(); // Deshabilitamos el modo autocommit
                        // Consultas SQL de inserción 
-                       $consultaInsercion1 = "INSERT INTO Departamento(CodDepartamento, DescDepartamento, FechaCreacionDepartamento, VolumenNegocio, FechaBaja) VALUES ('AAD', 'Departamento de Cobro', now(), 7.4, NULL)";
-                       $consultaInsercion2 = "INSERT INTO Departamento(CodDepartamento, DescDepartamento, FechaCreacionDepartamento, VolumenNegocio, FechaBaja) VALUES ('AAE', 'Departamento de I+D', now(), 10.7, NULL)";
-                       $consultaInsercion3 = "INSERT INTO Departamento(CodDepartamento, DescDepartamento, FechaCreacionDepartamento, VolumenNegocio, FechaBaja) VALUES ('AAF', 'Departamento de Inmuebles', now(), 18.3, NULL)";
+                       $consultaInsercion1 = "INSERT INTO T02_Departamento(T02_CodDepartamento, T02_DescDepartamento, T02_FechaCreacionDepartamento, T02_VolumenDeNegocio, T02_FechaBajaDepartamento) VALUES ('AAD', 'Departamento de Cobro', now(), 7.4, NULL)";
+                       $consultaInsercion2 = "INSERT INTO T02_Departamento(T02_CodDepartamento, T02_DescDepartamento, T02_FechaCreacionDepartamento, T02_VolumenDeNegocio, T02_FechaBajaDepartamento) VALUES ('AAE', 'Departamento de I+D', now(), 10.7, NULL)";
+                       $consultaInsercion3 = "INSERT INTO T02_Departamento(T02_CodDepartamento, T02_DescDepartamento, T02_FechaCreacionDepartamento, T02_VolumenDeNegocio, T02_FechaBajaDepartamento) VALUES ('AAF', 'Departamento de Inmuebles', now(), 18.3, NULL)";
 
                        // Preparamos las consultas
                        $resultadoconsultaInsercion1 = $miDB->prepare($consultaInsercion1);
@@ -46,7 +46,7 @@
                            echo ("<div class='respuestaCorrecta'>Los datos se han insertado correctamente en la tabla Departamento.</div>");
 
                            // Preparamos y ejecutamos la consulta SQL
-                           $consulta = "SELECT * FROM Departamento";
+                           $consulta = "SELECT * FROM T02_Departamento";
                            $resultadoConsultaPreparada = $miDB->prepare($consulta);
                            $resultadoConsultaPreparada->execute();
 
@@ -57,11 +57,11 @@
                            echo('<table><tr><th>Código</th><th>Descripción</th><th>Fecha de creación</th><th>Volumen</th><th>Fecha de baja</th></tr>');
                            while ($oDepartamento = $resultadoConsultaPreparada->fetchObject()) {// TAMBIEN SE PUEDE REALIZAR CON fetch(PDO::FETCH_OBJ)
                                echo('<tr>');
-                               echo('<td>' . $oDepartamento->CodDepartamento . '</td>');
-                               echo('<td>' . $oDepartamento->DescDepartamento . '</td>');
-                               echo('<td>' . $oDepartamento->FechaCreacionDepartamento . '</td>');
-                               echo('<td>' . $oDepartamento->VolumenNegocio . '</td>');
-                               echo('<td>' . $oDepartamento->FechaBaja . '</td>');
+                               echo('<td>' . $oDepartamento->T02_CodDepartamento . '</td>');
+                               echo('<td>' . $oDepartamento->T02_DescDepartamento . '</td>');
+                               echo('<td>' . $oDepartamento->T02_FechaCreacionDepartamento . '</td>');
+                               echo('<td>' . $oDepartamento->T02_VolumenDeNegocio . '</td>');
+                               echo('<td>' . $oDepartamento->T02_FechaBajaDepartamento . '</td>');
                                echo('</tr>');
                            }
                            echo('</table><br>');
