@@ -29,21 +29,21 @@
             </tr>
             <tr>
                 <td>CreaDB202DWESProyectoTema4.sql</td>
-                <td><a href="mostrarCodigo/muestraEjercicioSQL00.php">Visualizar</a></td>
+                <td><a href="mostrarcodigo/muestraEjercicioSQL00.php">Visualizar</a></td>
                 <td><a href="scriptDB/CreaDB202DWESProyectoTema4.php">Ejecutar</a></td>
-                <td><a href="mostrarCodigo/muestraEjercicioSQL00_EXP.php">Visualizar</a></td>
+                <td><a href="mostrarcodigo/muestraEjercicioSQL00_EXP.php">Visualizar</a></td>
             </tr>
             <tr>
                 <td>CargaInicialDB202DWESProyectoTema4.sql</td>
-                <td><a href="mostrarCodigo/muestraEjercicioSQL01.php">Visualizar</a></td>
+                <td><a href="mostrarcodigo/muestraEjercicioSQL01.php">Visualizar</a></td>
                 <td><a href="scriptDB/CargaInicialDB202DWESProyectoTema4.php">Ejecutar</a></td>
-                <td><a href="mostrarCodigo/muestraEjercicioSQL01_EXP.php">Visualizar</a></td>
+                <td><a href="mostrarcodigo/muestraEjercicioSQL01_EXP.php">Visualizar</a></td>
             </tr>
             <tr>
                 <td>BorraDB202DWESProyectoTema4.sql</td>
-                <td><a href="mostrarCodigo/muestraEjercicioSQL02.php">Visualizar</a></td>
+                <td><a href="mostrarcodigo/muestraEjercicioSQL02.php">Visualizar</a></td>
                 <td><a href="scriptDB/BorraDB202DWESProyectoTema4.php">Ejecutar</a></td>
-                <td><a href="mostrarCodigo/muestraEjercicioSQL02_EXP.php">Visualizar</a></td>
+                <td><a href="mostrarcodigo/muestraEjercicioSQL02_EXP.php">Visualizar</a></td>
             </tr>
         </table>
         <table>
