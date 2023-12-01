@@ -10,7 +10,9 @@
  */
 
 // Configuración de conexión con la base de datos
-require_once '../config/configDB.php';
+define('dsn', 'mysql:host=192.168.20.19;dbname=DB202DWESProyectoTema4'); // Host 'IP' y nombre de la base de datos
+define('usuario','user202DWESProyectoTema4'); // Nombre de usuario de la base de datos
+define('password','paso'); // Contraseña de la base de datos
 
 try {
     // Crear conexión
