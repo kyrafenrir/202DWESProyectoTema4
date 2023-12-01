@@ -17,18 +17,15 @@ try {
     // Crear conexión
     $conn = new PDO(dsn, usuario, password);
 
-    // Elimino el usuario de la base de datos
-    $query2 = "DROP TABLE  T02_Departamento";
+    // Eliminamos la tabla T02_Departamento
+    $consulta = <<<CONSULTA
+            USE DB202DWESProyectoTema4;
+            DROP TABLE  T02_Departamento
+            CONSULTA;
+    $consultaPreparada = $conn->prepare($consulta);
+    $consultaPreparada->execute();
 
-    // Ejecutar consultas SQL
-    $sql_queries = [$query2];
-
-    foreach ($sql_queries as $query) {
-        if ($conn->query($query) === FALSE) {
-            throw new Exception("Error al ejecutar la consulta: $query - " . $conn->error);
-        }
-        echo "Consulta ejecutada con éxito: $query<br>";
-    }
+    echo "<span style='color:green;'>Valores borrados correctamente</span>"; // Mostramos el mensaje si la consulta se a ejecutado correctamente
 } catch (PDOException $miExcepcionPDO) {
     $errorExcepcion = $miExcepcionPDO->getCode(); // Almacenamos el código del error de la excepción en la variable '$errorExcepcion'
     $mensajeExcepcion = $miExcepcionPDO->getMessage(); // Almacenamos el mensaje de la excepción en la variable '$mensajeExcepcion'

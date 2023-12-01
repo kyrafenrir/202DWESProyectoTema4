@@ -17,24 +17,21 @@ define('password','paso'); // Contraseña de la base de datos
 try {
     // Crear conexión
     $conn = new PDO(dsn,usuario,password);
+    
+     // Cargamos los valores a la tabla T02_Departamento
+    $consulta = <<<CONSULTA
+            USE DB202DWESProyectoTema4;
+            INSERT INTO T02_Departamento (T02_CodDepartamento, T02_DescDepartamento, T02_FechaCreacionDepartamento, T02_VolumenDeNegocio, T02_FechaBajaDepartamento) VALUES
+                ('DAW', 'Desarrollo de aplicaciones web', NOW(), 10.50, NULL),
+                ('DAM', 'Desarrollo de aplicaciones multiplataforma', NOW(), 5.50, NULL),
+                ('ASI', 'Administracion de sistemas informaticos en red', NOW(), 6.7, NULL),
+                ('SMR', 'Sistemas microinformarticos y redes', NOW(), 1.3, NULL),
+                ('DTI', 'Dibujo tecnico industrial', NOW(), 13.2, NULL)
+            CONSULTA;
+    $consultaPreparada = $conn->prepare($consulta);
+    $consultaPreparada->execute();
 
-    // Inserto los datos iniciales en la tabla Departamento
-    $query1 = "INSERT INTO T02_Departamento (T02_CodDepartamento, T02_DescDepartamento, T02_FechaCreacionDepartamento, T02_VolumenDeNegocio, T02_FechaBajaDepartamento) VALUES
-    ('DAW', 'Desarrollo de aplicaciones web', NOW(), 10.50, NULL),
-    ('DAM', 'Desarrollo de aplicaciones multiplataforma', NOW(), 5.50, NULL),
-    ('ASI', 'Administracion de sistemas informaticos en red', NOW(), 6.7, NULL),
-    ('SMR', 'Sistemas microinformarticos y redes', NOW(), 1.3, NULL),
-    ('DTI', 'Dibujo tecnico industrial', NOW(), 13.2, NULL)";
-   
-    // Ejecutar consultas SQL
-    $sql_queries = [$query1];
-
-    foreach ($sql_queries as $query) {
-        if ($conn->query($query) === FALSE) {
-            throw new Exception("Error al ejecutar la consulta: $query - " . $conn->error);
-        }
-        echo "Consulta ejecutada con éxito: $query<br>";
-    }
+    echo "<span style='color:green;'>Valores cargados correctamente</span>"; // Mostramos el mensaje si la consulta se a ejecutado correctamente
 } catch (PDOException $miExcepcionPDO) {
     $errorExcepcion = $miExcepcionPDO->getCode(); // Almacenamos el código del error de la excepción en la variable '$errorExcepcion'
     $mensajeExcepcion = $miExcepcionPDO->getMessage(); // Almacenamos el mensaje de la excepción en la variable '$mensajeExcepcion'

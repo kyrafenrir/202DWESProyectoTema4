@@ -18,27 +18,18 @@ try {
     // Crear conexión
     $conn = new PDO(dsn,usuario,password);
     
-    // Eliminar tabla de la base de datos en caso de que exista
-    $query1 = "DROP TABLE IF EXISTS T02_Departamento;";
-    
-    // Creamos la tabla Departamento
-    $query2 = "CREATE TABLE T02_Departamento (
+    // Creamos la tabla T02_Departamento
+    $consulta = "CREATE TABLE IF NOT EXISTS DB202DWESProyectoTema4.T02_Departamento (
         T02_CodDepartamento CHAR(3) PRIMARY KEY,
         T02_DescDepartamento VARCHAR(255),
         T02_FechaCreacionDepartamento DATETIME,
         T02_VolumenDeNegocio FLOAT,
         T02_FechaBajaDepartamento DATETIME
-    )";
+    )ENGINE=INNODB;";
+    $consultaPreparada = $conn->prepare($consulta);
+    $consultaPreparada->execute();
 
-    // Ejecutar consultas SQL
-    $sql_queries = [$query1, $query2];
-
-    foreach ($sql_queries as $query) {
-        if ($conn->query($query) === FALSE) {
-            throw new Exception("Error al ejecutar la consulta: $query - " . $conn->error);
-        }
-        echo "Consulta ejecutada con éxito: $query<br>";
-    }
+    echo "<span style='color:green;'>Tabla Creada correctamente</span>"; // Mostramos el mensaje si la consulta se a ejecutado correctamente
 } catch (PDOException $miExcepcionPDO) {
     $errorExcepcion = $miExcepcionPDO->getCode(); // Almacenamos el código del error de la excepción en la variable '$errorExcepcion'
     $mensajeExcepcion = $miExcepcionPDO->getMessage(); // Almacenamos el mensaje de la excepción en la variable '$mensajeExcepcion'
