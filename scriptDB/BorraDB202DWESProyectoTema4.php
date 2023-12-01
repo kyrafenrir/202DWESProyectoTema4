@@ -16,15 +16,12 @@ define('password','paso'); // Contraseña de la base de datos
 try {
     // Crear conexión
     $conn = new PDO(dsn, usuario, password);
-    
-    // Utilizar la base de datos 
-    $query1 = "USE dbs12302406;";
 
     // Elimino el usuario de la base de datos
     $query2 = "DROP TABLE  T02_Departamento";
 
     // Ejecutar consultas SQL
-    $sql_queries = [$query1, $query2];
+    $sql_queries = [$query2];
 
     foreach ($sql_queries as $query) {
         if ($conn->query($query) === FALSE) {
